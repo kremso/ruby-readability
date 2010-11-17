@@ -23,7 +23,7 @@ module Readability
     end
 
     def make_html
-      @html = Nokogiri::HTML(@input, nil, 'UTF-8')
+      @html = Nokogiri::HTML(@input, nil)
     end
 
     REGEXES = {
