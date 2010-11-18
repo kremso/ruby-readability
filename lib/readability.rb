@@ -263,15 +263,6 @@ module Readability
         # If element is in whitelist, delete all its attributes
         if whitelist[el.node_name]
           el.attributes.each { |a, x| el.delete(a) unless @options[:attributes] && @options[:attributes].include?(a.to_s) }
-
-          # Otherwise, replace the element with its contents
-        else
-          if replace_with_whitespace[el.node_name]
-            # Adding &nbsp; here, because swap removes regular spaaces
-            el.swap('&nbsp;' << el.text << '&nbsp;')
-          else
-            el.swap(el.text)
-          end
         end
 
       end
