@@ -51,6 +51,7 @@ module Readability
       transform_misused_divs_into_paragraphs!
       candidates = score_paragraphs(options[:min_text_length])
       best_candidate = select_best_candidate(candidates)
+      return nil unless best_candidate[:elem]
       article = get_article(candidates, best_candidate)
 
       cleaned_article = sanitize(article, candidates, options)
@@ -114,7 +115,7 @@ module Readability
       end
 
       best_candidate = sorted_candidates.first || { :elem => @html.css("body").first, :content_score => 0 }
-      debug("Best candidate #{best_candidate[:elem].name}##{best_candidate[:elem][:id]}.#{best_candidate[:elem][:class]} with score #{best_candidate[:content_score]}")
+      #debug("Best candidate #{best_candidate[:elem].name}##{best_candidate[:elem][:id]}.#{best_candidate[:elem][:class]} with score #{best_candidate[:content_score]}")
 
       best_candidate
     end
